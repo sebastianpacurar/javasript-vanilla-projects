@@ -9,11 +9,11 @@ const inputElement = document.getElementById("input");
 const clearList = document.getElementById("completedList");
 const table = document.getElementById("historyTable");
 
-const products = {};
+let products = {};
 
 
 // if item already in list, only add random number to the already existing one
-// arguments should be in this order: element, list, button
+// arguments should be in this order: element, listItem, button
 function overRideExistingItem() {
     let verified = false;
     for (let i = 0; i < arguments[0].children.length; i++) {
@@ -81,7 +81,15 @@ clearButton.addEventListener("click", function () {
             nameRow.textContent = data[0];
             priceRow.textContent = data[1];
             clearList.children[0].remove();
-            products[nameRow.textContent] = parseInt(priceRow.textContent);
+            if (products[nameRow.textContent] !== undefined) {
+                for (let prop in products) {
+                    if (prop === nameRow.textContent) {
+                        products[prop] += parseInt(priceRow.textContent);
+                    }
+                }
+            } else {
+                products[nameRow.textContent] = parseInt(priceRow.textContent);
+            }
         }
     } else {
         alert("List is empty");
@@ -94,18 +102,16 @@ totalPriceButton.addEventListener("click", function () {
         prices.push(products[prop]);
     }
 
-    const totalPrice = prices.reduce((a, b) => a + b);
-
     // if no items in history throw alert; or if the price button is pressed twice without adding any items
     if (prices.length < 1) {
         alert("No items in history");
         return;
-    } else if (parseInt(totalPriceParagraph.children[0].textContent) === totalPrice) {
+    } else if (parseInt(totalPriceParagraph.children[0].textContent) === prices.reduce((a, b) => a + b)) {
         alert("No new items added to history");
     }
 
     // calculate total sum
     totalPriceParagraph.style.display = "block";
-    totalPriceParagraph.children[0].textContent = totalPrice;
+    totalPriceParagraph.children[0].textContent = prices.reduce((a, b) => a + b);
 });
 
