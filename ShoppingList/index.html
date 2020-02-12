@@ -1,0 +1,40 @@
+<!-- Super basic example with no styling and no counter -->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="split left">
+    <div>
+        <h2>Shopping list</h2>
+        <label>New Item</label>
+        <input type="text" id="input">
+        <button id="addBtn">Add Item</button>
+        <button id="clearBtn">Clear Completed</button>
+        <h3>Items needed to buy</h3>
+        <ul id="buyList"></ul>
+        <h3>Completed</h3>
+        <ul id="completedList"></ul>
+    </div>
+</div>
+
+<div class="split right">
+    <div class="split right">
+        <div>
+            <h3>History</h3>
+            <button id="calcSum">Total price</button>
+            <p id="totalPrice" hidden>Total Price is: <span> </span></p>
+            <table id="historyTable">
+                <tr>
+                    <td>Product</td>
+                    <td>Price</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="shoppingList.js"></script>
+</body>
+</html>
