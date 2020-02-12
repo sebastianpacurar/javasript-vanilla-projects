@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bba6a89e-c47f-4fc9-beb8-498a940ea1dd" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="fix_total_price_functionality" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="ProjectId" id="1XijPFD6blahGoG5aaUJCuGuQtm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/javascript-projects/ShoppingList/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bba6a89e-c47f-4fc9-beb8-498a940ea1dd" name="Default Changelist" comment="" />
+      <created>1581535782890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581535782890</updated>
+      <workItem from="1581535784501" duration="5869000" />
+    </task>
+    <task id="LOCAL-00001" summary="fixed total price functionality for multiple items of the same kind">
+      <created>1581542889783</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581542889783</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed total price functionality for multiple items of the same kind" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed total price functionality for multiple items of the same kind" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="141" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581535803855">
+      <screen x="0" y="27" width="1366" height="708" />
+    </state>
+    <state x="141" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.708/1366.0.1920.1080@0.27.1366.708" timestamp="1581535803855" />
+    <state x="1774" y="216" width="641" height="651" key="#shoppingList.js" timestamp="1581542628968">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1774" y="216" width="641" height="651" key="#shoppingList.js/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542628968" />
+    <state x="1489" y="383" width="1603" height="697" key="#xdebugger.evaluate" timestamp="1581542402565">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1489" y="383" width="1603" height="697" key="#xdebugger.evaluate/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542402565" />
+    <state x="1670" y="81" width="848" height="921" key="CommitChangelistDialog2" timestamp="1581542889601">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1670" y="81" width="848" height="921" key="CommitChangelistDialog2/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542889601" />
+    <state x="1521" y="100" width="1157" height="876" key="DiffContextDialog" timestamp="1581543244052">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1521" y="100" width="1157" height="876" key="DiffContextDialog/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581543244052" />
+    <state width="1334" height="485" key="GridCell.Tab.0.bottom" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.0.bottom/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state width="1334" height="485" key="GridCell.Tab.0.center" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.0.center/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state width="1334" height="485" key="GridCell.Tab.0.left" timestamp="1581542483102">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.0.left/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483102" />
+    <state width="1334" height="485" key="GridCell.Tab.0.right" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.0.right/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state width="1334" height="485" key="GridCell.Tab.1.bottom" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.1.bottom/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state width="1334" height="485" key="GridCell.Tab.1.center" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.1.center/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state width="1334" height="485" key="GridCell.Tab.1.left" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.1.left/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state width="1334" height="485" key="GridCell.Tab.1.right" timestamp="1581542483103">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1334" height="485" key="GridCell.Tab.1.right/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542483103" />
+    <state x="1694" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1581542893833">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1694" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581542893833" />
+    <state x="1521" y="100" width="1157" height="876" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581543168203">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1521" y="100" width="1157" height="876" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581543168203" />
+    <state x="1872" y="458" width="455" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581543273225">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1872" y="458" width="455" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581543273225" />
+    <state x="1638" y="226" width="912" height="631" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1581539987078">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1638" y="226" width="912" height="631" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.708/1366.0.1920.1080@1366.0.1920.1080" timestamp="1581539987078" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/ShoppingList/shoppingList.js</url>
+          <line>99</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
