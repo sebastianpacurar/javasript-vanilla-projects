@@ -8,6 +8,11 @@
     padding-top: 20px;
 }
 
+.column {
+    width: 25%;
+    float: left;
+}
+
 .left {
     left: 0;
     background-color: lightgoldenrodyellow;
