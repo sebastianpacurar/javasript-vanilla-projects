@@ -48,7 +48,7 @@ addButton.addEventListener("click", function () {
 
     // add remove button
     const removeBtn = document.createElement("button");
-    removeBtn.textContent = " Clear Item";
+    removeBtn.textContent = " Clear";
 
     if (overRideExistingItem(buyList, listItem, removeBtn)) {
         return;
