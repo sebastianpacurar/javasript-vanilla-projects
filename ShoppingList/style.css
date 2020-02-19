@@ -13,6 +13,10 @@
     float: left;
 }
 
+#columnLeft {
+    padding-left: 30%;
+}
+
 .left {
     left: 0;
     background-color: lightgoldenrodyellow;
@@ -23,7 +27,11 @@
     background-color: lightgoldenrodyellow;
 }
 
+.itemPrice {
+    padding-left: 15%;
+}
+
 table, td, th, tr {
-    border : 1px solid black;
+    border: 1px solid black;
     border-collapse: collapse;
 }
