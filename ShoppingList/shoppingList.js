@@ -35,10 +35,13 @@ function overRideExistingItem() {
 addButton.addEventListener("click", function () {
     const listItem = document.createElement("li");
     const itemName = document.createElement("div");
-    const itemString = inputElement.value;
-    const itemPrice = Math.trunc(Math.random() * 100);
 
-    itemName.textContent = itemString + ' ' + itemPrice;
+    const itemPrice = document.createElement("span");
+    itemPrice.classList.add("itemPrice");
+
+    const itemString = inputElement.value;
+    const itemPriceValue = Math.trunc(Math.random() * 100);
+
 
     // if inserted value is empty, alert and exit function
     if (itemString === "") {
@@ -54,8 +57,15 @@ addButton.addEventListener("click", function () {
         return;
     }
 
-    // append item name and remove button to list item, and then append the item to existent list in DOM
+    // append itemName div to listItem li
     listItem.appendChild(itemName);
+    itemName.textContent = itemString;
+
+    // append itemPrice span to itemName div
+    itemName.appendChild(itemPrice);
+    itemPrice.textContent = ' ' + String(itemPriceValue);    // in order to be able to split we added an empty string
+
+    // append remove button to list item
     listItem.appendChild(removeBtn);
     buyList.appendChild(listItem);
 
@@ -63,8 +73,34 @@ addButton.addEventListener("click", function () {
     removeBtn.addEventListener("click", function (e) {
         e = e.target;
         const clearItem = document.createElement("li");
-        clearItem.textContent = e.parentElement.children[0].textContent;
-        document.getElementById("completedList").appendChild(clearItem);
+        const itemName = document.createElement("div");
+
+        const itemPrice = document.createElement("span");
+        itemPrice.classList.add("itemPrice");   // add class for span
+
+        clearList.appendChild(clearItem);   // append the li to ul
+
+        // the entire item details
+        const itemTitleAndPrice = e.parentElement.children[0].textContent.split(" ");
+
+        // retrieve only price value which is the last element of the array
+        const itemPriceValue = itemTitleAndPrice.slice(itemTitleAndPrice.length - 1);
+
+        // retrieve item name
+        const itemNameValue = function getNameValue() {
+            itemTitleAndPrice.pop();
+            return itemTitleAndPrice.join(" ");
+        };
+
+        // need to add textContent for div right after creation, otherwise it will override the span
+        clearItem.appendChild(itemName);
+        itemName.textContent = itemNameValue();
+
+        // append span and add textContent
+        itemName.appendChild(itemPrice);
+        itemPrice.textContent = ' ' + String(itemPriceValue);   // in order to retrieve only price after split
+
+        // remove the item from the "to buy" list which was triggered
         e.parentElement.remove();
     });
 
@@ -77,10 +113,14 @@ clearButton.addEventListener("click", function () {
             const row = table.insertRow(1);
             const nameRow = row.insertCell(0);
             const priceRow = row.insertCell(1);
-            const data = clearList.children[0].textContent.split(" ");
-            nameRow.textContent = data[0];
-            priceRow.textContent = data[1];
+
+            let data = clearList.children[0].textContent.split(" ");
+            priceRow.textContent = data[data.length - 1];       // add only the price
+            data.pop();                                         // remove the price from the array
+            nameRow.textContent = data.join(" ");               // add only the name of the item
             clearList.children[0].remove();
+
+            // add product name and price in the products object literal
             if (products[nameRow.textContent] !== undefined) {
                 for (let prop in products) {
                     if (prop === nameRow.textContent) {
@@ -102,16 +142,17 @@ totalPriceButton.addEventListener("click", function () {
         prices.push(products[prop]);
     }
 
+    const getPrice = prices.reduce((a, b) => a + b);
+
     // if no items in history throw alert; or if the price button is pressed twice without adding any items
     if (prices.length < 1) {
         alert("No items in history");
         return;
-    } else if (parseInt(totalPriceParagraph.children[0].textContent) === prices.reduce((a, b) => a + b)) {
+    } else if (parseInt(totalPriceParagraph.children[0].textContent) === getPrice) {
         alert("No new items added to history");
     }
 
     // calculate total sum
     totalPriceParagraph.style.display = "block";
-    totalPriceParagraph.children[0].textContent = prices.reduce((a, b) => a + b);
+    totalPriceParagraph.children[0].textContent = getPrice;
 });
-
