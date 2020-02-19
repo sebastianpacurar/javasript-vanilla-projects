@@ -142,13 +142,16 @@ totalPriceButton.addEventListener("click", function () {
         prices.push(products[prop]);
     }
 
-    const getPrice = prices.reduce((a, b) => a + b);
-
-    // if no items in history throw alert; or if the price button is pressed twice without adding any items
+    // if no items in history throw alert;
     if (prices.length < 1) {
         alert("No items in history");
         return;
-    } else if (parseInt(totalPriceParagraph.children[0].textContent) === getPrice) {
+    }
+
+    const getPrice = prices.reduce((a, b) => a + b);
+
+    // if the price button is pressed twice without adding any items
+    if (parseInt(totalPriceParagraph.children[0].textContent) === getPrice) {
         alert("No new items added to history");
     }
 
