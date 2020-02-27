@@ -1,0 +1,11 @@
+#game {
+    background: yellow;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 3em;
+    color: black;
+    font-weight: bold;
+}
+
+.content {
+    text-align: center;
+}
