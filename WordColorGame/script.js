@@ -6,13 +6,14 @@ const submitBtn = document.getElementById("submitAnswer");
 const timeSpan = document.getElementById("timeLeft");
 const inputText = document.getElementById("input");
 const word = document.getElementById("game");
+const radioBtns = document.getElementsByClassName("difficulty");
 
 // the actual words used to generate the random word
 const words = ["red", "green", "yellow", "grey", "blue", "cyan", "orange",
     "black", "white", "purple", "pink", "aqua", "indigo", "brown",
     "maroon", "violet"];
 
-let timeLeft = 5;   // the actual time for a challenge round is set to 5 seconds
+let timeLeft = 0;   // the actual time for a challenge round. it is set to 0 as it is grabbed from the difficulty choice
 let winCounter = 0; // the counts of how many times the word from input text matches the word generated
 
 // generate random color by adding a random number/letter from the 'letters' variable to the 'color' variable
@@ -26,21 +27,29 @@ function createRandomColor() {
     return color;   // returns a hexadecimal color such as #3B21A7
 }
 
+// returns the exact number of the radio button which was checked
+const checkedRadioBtn = function () {
+    for (let i = 0; i < radioBtns.length; i++) {
+        if (radioBtns[i].checked) {
+            return parseInt(radioBtns[i].value);
+        }
+    }
+};
 
 function changeColors() {
     // set new word from the 'words' array, change bg color and word text color
     word.innerHTML = words[Math.trunc(Math.random() * (words.length - 1))];
     word.style.color = createRandomColor();
-    word.style.background = createRandomColor();
+    // word.style.background = createRandomColor();
 }
 
 
 startBtn.addEventListener("click", function () {
     changeColors();
 
-    timeLeft = 5;               // set the timeLeft to 5 in case we want to play a new game
-    timeSpan.innerHTML = "";    // set the displayed time to empty string
-    scoreSpan.innerHTML = "0";  // set the displayed score to 0
+    timeLeft = checkedRadioBtn();   // set the timeLeft to difficulty level the player chose
+    timeSpan.innerHTML = "";        // set the displayed time to empty string
+    scoreSpan.innerHTML = "0";      // set the displayed score to 0
 
     // set the time limit. in this case it is 5 seconds
     const time = setInterval(function () {
@@ -60,8 +69,7 @@ startBtn.addEventListener("click", function () {
 });
 
 
-submitBtn.addEventListener("click", function () {
-
+function submitAction() {
     // in case the game is already over or the user didn't start the game yet throw alert
     if (parseInt(timeSpan.innerHTML) === 0 || timeSpan.innerHTML === "") {
         alert("Please start a new game");
@@ -76,7 +84,7 @@ submitBtn.addEventListener("click", function () {
     if (inputText.value === gameWord) {
         winCounter++;
         scoreSpan.innerHTML = String(winCounter);   // increment winCounter with 1
-        timeLeft = 5;                               // timer set back to 5 seconds
+        timeLeft = checkedRadioBtn();               // timer set back to 5 seconds
         changeColors();
         // in case the submitted word is incorrect then it's game over
     } else {
@@ -86,4 +94,16 @@ submitBtn.addEventListener("click", function () {
 
     // set the input text back to blank
     inputText.value = "";
+}
+
+// submit by pressing enter key on keyboard
+inputText.addEventListener("keyup", function (e) {
+    if (e.key === "Enter") {
+        submitAction();
+    }
+});
+
+// submit by clicking submit button
+submitBtn.addEventListener("click", function () {
+    submitAction();
 });

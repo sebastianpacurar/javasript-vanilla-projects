@@ -14,15 +14,29 @@
 <h1 class="content">Word Color Game</h1>
 <h3> Your task is to guess what color does the word represent, and not the color the word is. Hit enter or press submit
     button after you wrote down the word</h3>
+
+<p>Select difficulty:</p>
+<input type="radio" class="difficulty" id="easyDif" value="7" checked="checked">
+<label for="easyDif">Easy - 7 seconds</label><br>
+<input type="radio" class="difficulty" id="mediumDif" value="5">
+<label for="mediumDif">medium - 5 seconds</label><br>
+<input type="radio" class="difficulty" id="hardDif" value="3">
+<label for="hardDif">Hard - 3 seconds</label><br>
+<input type="radio" class="difficulty" id="nightmareDif" value="2">
+<label for="nightmareDif">Nightmare - 2 seconds</label>
+<br><br>
+
 <button id="startBtn">Start Game</button>
 <hr>
 <div id="game" class="content">red</div>
 <hr>
 <br>
+
 <label for="input">Color Word: </label><input type="text" id="input">
 <button id="submitAnswer">Submit</button>
 <h4>Time Left: <span id="timeLeft"></span></h4>
 <hr>
+
 <h4>Score: <span id="score">0</span></h4>
 
 <script src="script.js"></script>
