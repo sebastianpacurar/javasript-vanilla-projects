@@ -27,7 +27,7 @@ function createRandomColor() {
     return color;   // returns a hexadecimal color such as #3B21A7
 }
 
-// returns the exact number of the radio button which was checked
+// returns the exact value of the radio button which was checked
 const checkedRadioBtn = function () {
     for (let i = 0; i < radioBtns.length; i++) {
         if (radioBtns[i].checked) {
