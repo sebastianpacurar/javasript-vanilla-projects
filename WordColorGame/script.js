@@ -38,56 +38,68 @@ const checkedRadioBtn = function () {
 
 function changeColors() {
     // set new word from the 'words' array, change bg color and word text color
-    word.innerHTML = words[Math.trunc(Math.random() * (words.length - 1))];
+    word.textContent = words[Math.trunc(Math.random() * (words.length - 1))];
     word.style.color = createRandomColor();
-    // word.style.background = createRandomColor();
+    if (checkedRadioBtn() >= 5) {                       // i noticed the game is trickier if the bg color is only white
+        word.style.background = createRandomColor();    // easy or medium get to change the bg color as well
+    } else {
+        word.style.background = "#FFFFFF";              // when hard or nightmare the bg color is white
+        word.style.fontWeight = "normal";               // when hard or nightmare the text is not bold
+    }
 }
 
 
 startBtn.addEventListener("click", function () {
-    changeColors();
+    if (parseInt(timeSpan.textContent) === 0) {  // avoid setInterval to activate again during gameplay
 
-    timeLeft = checkedRadioBtn();   // set the timeLeft to difficulty level the player chose
-    timeSpan.innerHTML = "";        // set the displayed time to empty string
-    scoreSpan.innerHTML = "0";      // set the displayed score to 0
+        changeColors();
 
-    // set the time limit. in this case it is 5 seconds
-    const time = setInterval(function () {
-        if (timeLeft <= 0) {
+        timeLeft = checkedRadioBtn();   // set the timeLeft to difficulty level the player chose
+        timeSpan.textContent = "";        // set the displayed time to empty string
+        scoreSpan.textContent = "0";      // set the displayed score to 0
 
-            // if time gets to 0 then it's game over
-            clearInterval(time);
-            timeSpan.innerHTML = "0";
-            alert(`Game Over! Your score is ${scoreSpan.innerHTML}`);
-        } else {
+        // set the time limit. in this case it is 5 seconds
+        const time = setInterval(function () {
+            if (timeLeft <= 0) {
 
-            // keep counting down
-            timeSpan.innerHTML = String(timeLeft);
-        }
-        timeLeft -= 1;
-    }, 1000);   // set interval to one second countdown
+                // if time gets to 0 then it's game over
+                clearInterval(time);
+                timeSpan.textContent = "0";
+                alert(`Game Over! Your score is ${scoreSpan.textContent}`);
+            } else {
+
+                // keep counting down
+                timeSpan.textContent = String(timeLeft);
+            }
+            timeLeft -= 1;
+        }, 1000);   // set interval to one second countdown
+    }
 });
 
 
 function submitAction() {
     // in case the game is already over or the user didn't start the game yet throw alert
-    if (parseInt(timeSpan.innerHTML) === 0 || timeSpan.innerHTML === "") {
+    if (parseInt(timeSpan.textContent) === 0) {
         alert("Please start a new game");
-        timeSpan.innerHTML = "";
         return;
     }
 
     // grab the colored word
-    const gameWord = word.innerHTML;
+    const gameWord = word.textContent;
 
     // in case the submitted word is correct
     if (inputText.value === gameWord) {
         winCounter++;
-        scoreSpan.innerHTML = String(winCounter);   // increment winCounter with 1
-        timeLeft = checkedRadioBtn();               // timer set back to 5 seconds
+        scoreSpan.textContent = String(winCounter);   // increment winCounter with 1
+        if (checkedRadioBtn() >= 5) {
+            timeLeft += Math.trunc(checkedRadioBtn() / 2);   // for easy and medium you get original time divided by 2 added to your left time
+        } else {
+            timeLeft = checkedRadioBtn();                       // for hard and nightmare, the time is not added, instead it is set to original value
+        }
+
         changeColors();
-        // in case the submitted word is incorrect then it's game over
-    } else {
+
+    } else {    // in case the submitted word is incorrect then it's game over
         alert("Wrong color");
         timeLeft = 0;   // timer set to 0, means the game is over
     }
@@ -96,7 +108,7 @@ function submitAction() {
     inputText.value = "";
 }
 
-// submit by pressing enter key on keyboard
+// submit by pressing or tapping enter key on keyboard
 inputText.addEventListener("keyup", function (e) {
     if (e.key === "Enter") {
         submitAction();
