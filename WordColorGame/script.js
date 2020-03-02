@@ -7,22 +7,22 @@ const timeSpan = document.getElementById("timeLeft");
 const inputText = document.getElementById("input");
 const word = document.getElementById("game");
 const radioBtns = document.getElementsByClassName("difficulty");
+const livesSpan = document.getElementById("livesLeft");
 
 // the actual words used to generate the random word
-const words = ["red", "green", "yellow", "grey", "blue", "cyan", "orange",
-    "black", "white", "purple", "pink", "aqua", "indigo", "brown",
-    "maroon", "violet"];
+const words = ["red", "green", "yellow", "grey", "blue", "cyan", "orange", "black",
+               "white", "purple", "pink", "aqua", "indigo", "brown", "maroon", "violet"];
 
 let timeLeft = 0;   // the actual time for a challenge round. it is set to 0 as it is grabbed from the difficulty choice
 let winCounter = 0; // the counts of how many times the word from input text matches the word generated
 
-// generate random color by adding a random number/letter from the 'letters' variable to the 'color' variable
+// generate random color by appending a random number/letter from the 'hexElements' variable to the 'color' variable
 function createRandomColor() {
-    const letters = "0123456789ABCDEF";
+    const hexElements = "0123456789ABCDEF";
     let color = "#";
 
     for (let i = 0; i < 6; i++) {
-        color += letters[Math.trunc(Math.random() * 16)];
+        color += hexElements[Math.trunc(Math.random() * 16)];
     }
     return color;   // returns a hexadecimal color such as #3B21A7
 }
@@ -42,6 +42,7 @@ function changeColors() {
     word.style.color = createRandomColor();
     if (checkedRadioBtn() >= 5) {                       // i noticed the game is trickier if the bg color is only white
         word.style.background = createRandomColor();    // easy or medium get to change the bg color as well
+        word.style.fontWeight = "bold";
     } else {
         word.style.background = "#FFFFFF";              // when hard or nightmare the bg color is white
         word.style.fontWeight = "normal";               // when hard or nightmare the text is not bold
@@ -51,10 +52,11 @@ function changeColors() {
 
 startBtn.addEventListener("click", function () {
     if (parseInt(timeSpan.textContent) === 0) {  // avoid setInterval to activate again during gameplay
-
+        word.style.visibility = "visible";       // show the visibility of the word when game starts
         changeColors();
+        livesSpan.textContent = "3";
 
-        timeLeft = checkedRadioBtn();   // set the timeLeft to difficulty level the player chose
+        timeLeft = checkedRadioBtn();     // set the timeLeft to difficulty level the player chose
         timeSpan.textContent = "";        // set the displayed time to empty string
         scoreSpan.textContent = "0";      // set the displayed score to 0
 
@@ -65,6 +67,7 @@ startBtn.addEventListener("click", function () {
                 // if time gets to 0 then it's game over
                 clearInterval(time);
                 timeSpan.textContent = "0";
+                word.style.visibility = "hidden";   // hide the word after game over
                 alert(`Game Over! Your score is ${scoreSpan.textContent}`);
             } else {
 
@@ -99,9 +102,14 @@ function submitAction() {
 
         changeColors();
 
-    } else {    // in case the submitted word is incorrect then it's game over
-        alert("Wrong color");
-        timeLeft = 0;   // timer set to 0, means the game is over
+    } else {
+        livesSpan.textContent = String(parseInt(livesSpan.textContent) - 1);  // in case the submitted word is incorrect take 1 life away
+        if (parseInt(livesSpan.textContent) === 0) {
+
+            // when your lives get to 0, the game is over
+            alert(`You lost the game, thank you for playing`);
+            timeLeft = 0;   // timer set to 0, means the game is over
+        }
     }
 
     // set the input text back to blank

@@ -17,13 +17,13 @@
 
 <p>Select difficulty:</p>
 <input type="radio" class="difficulty" id="easyDif" name="difficulty" value="7" checked="checked">
-<label for="easyDif">Easy - 7 seconds</label><br>
+<label for="easyDif">Easy - 7 seconds, half of the original time added to remaining time</label><br>
 <input type="radio" class="difficulty" id="mediumDif" name="difficulty" value="5">
-<label for="mediumDif">medium - 5 seconds</label><br>
+<label for="mediumDif">medium - 5 seconds, half of the original time added to remaining time</label><br>
 <input type="radio" class="difficulty" id="hardDif" name="difficulty" value="4">
-<label for="hardDif">Hard - 4 seconds</label><br>
+<label for="hardDif">Hard - 4 seconds, time set back to original value</label><br>
 <input type="radio" class="difficulty" id="nightmareDif" name="difficulty" value="2">
-<label for="nightmareDif">Nightmare - 2 seconds</label>
+<label for="nightmareDif">Nightmare - 2 seconds, time set back to original value</label>
 <br><br>
 
 <button id="startBtn">Start Game</button>
@@ -35,6 +35,7 @@
 <label for="input">Color Word: </label><input type="text" id="input">
 <button id="submitAnswer">Submit</button>
 <h4>Time Left: <span id="timeLeft">0</span></h4>
+<h4>Lives left:  <span id="livesLeft">0</span></h4>
 <hr>
 
 <h4>Score: <span id="score">0</span></h4>
