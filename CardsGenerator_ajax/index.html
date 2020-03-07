@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CardsGenerator</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+
+
+<h1> Cards generator</h1>
+
+<label for="deck-no">Number of decks: </label>
+<input type="text" id="deck-no"><br>
+<button id="generate-cards">Generate deck</button>
+
+<div class="deck-details">
+    <p>Deck ID: <span id="deck-id"></span></p>
+    <p>Remaining cards: <span id="remaining-cards"></span></p>
+</div>
+
+<hr>
+
+<label for="draw">Number of cards to draw: </label>
+<input type="text" id="draw"><br>
+<button id="draw-cards">Draw cards</button>
+
+<div id="drawn-cards"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
