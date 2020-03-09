@@ -11,7 +11,9 @@ const generateBtn = document.getElementById("generate-cards"),
     inputDecks = document.getElementById("deck-no"),
     inputDraw = document.getElementById("draw"),
     deckIdSpan = document.getElementById("deck-id"),
-    remainingCardsSpan = document.getElementById("remaining-cards");
+    drawnCardsDiv = document.getElementById("drawn-cards"),
+    remainingCardsSpan = document.getElementById("remaining-cards"),
+    reshuffleBtn = document.getElementById("reshuffle");
 
 
 generateBtn.addEventListener("click", () => {
@@ -23,18 +25,23 @@ generateBtn.addEventListener("click", () => {
         deckCount = 1;
     }
 
+    // reset the cards, by removing the "ul" elements (the already drawn cards)
+    while (drawnCardsDiv.children.length > 0) {
+        drawnCardsDiv.children[0].remove();
+    }
+
     // make the call based on how many decks you want. 1 deck contains 52 cards
     xhr.open("GET", `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=${deckCount}`, true);
 
     // in case of error throw alert
-    xhr.onerror = function (){
-        alert("Something went wrong during the transaction");
+    xhr.onerror = function () {
+        alert(`Something went wrong during the transaction: \n ${this.responseText}`);
     };
 
     xhr.onload = function () {
         if (this.status !== 200) {
             // if status code is not success throw error
-            alert(`Something went wrong. the code is ${this.status} with the following: ${this.statusText}`)
+            alert(`Something went wrong. the code is ${this.status} with the following: ${this.responseText}`);
         }
         const data = JSON.parse(this.responseText);         // parse the response text to JSON
 
@@ -65,14 +72,14 @@ drawBtn.addEventListener("click", () => {
     xhr.open("GET", `https://deckofcardsapi.com/api/deck/${deckIdSpan.textContent}/draw/?count=${drawCount}`, true);
 
     // in case of error throw alert
-    xhr.onerror = function (){
+    xhr.onerror = function () {
         alert("Something went wrong during the transaction");
     };
 
     xhr.onload = function () {
         if (this.status !== 200) {
             // if status code is not success throw error
-            alert(`Something went wrong. the code is ${this.status} with the following: ${this.statusText}`)
+            alert(`Something went wrong. the code is ${this.status} with the following: ${this.statusText}`);
         }
 
         const data = JSON.parse(this.responseText);         // parse the response text to JSON
@@ -88,7 +95,32 @@ drawBtn.addEventListener("click", () => {
                         <li><img src="${data.cards[i].image}" alt="Card image not available"/></li>
                        </ul>`
         }
-        document.getElementById("drawn-cards").innerHTML += output;  // keep appending the "<ul>s" to the "div"
+        drawnCardsDiv.innerHTML += output;  // keep appending the "<ul>s" to the "div"
     };
     xhr.send();
+});
+
+reshuffleBtn.addEventListener("click", () => {
+
+    if (drawnCardsDiv.children.length > 0) {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", `https://deckofcardsapi.com/api/deck/${deckIdSpan.textContent}/shuffle/`, true);
+
+        xhr.onload = function () {
+            if (this.status !== 200) {
+                // if status code is not success throw error
+                alert(`Something went wrong. the code is ${this.status} with the following: ${this.statusText}`);
+            }
+
+            const data = JSON.parse(this.responseText);         // parse the response text to JSON
+            remainingCardsSpan.textContent = data.remaining;    // reshuffle the cards, getting back the entire pack(s)
+
+            // reset the cards, by removing the "ul" elements (the already drawn cards)
+            while (drawnCardsDiv.children.length > 0) {
+                drawnCardsDiv.children[0].remove();
+            }
+        };
+        xhr.send();
+    }
 });
