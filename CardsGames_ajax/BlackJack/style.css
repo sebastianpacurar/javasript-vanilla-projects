@@ -1,0 +1,19 @@
+.column {
+    flex: 10%;
+    padding: 5px;
+}
+
+img {
+    width: 80px;
+    height: 100px;
+    padding: 5px;
+}
+
+div.deck-details {
+    display: block;
+}
+
+button {
+    margin: 5px;
+    padding: 5px;
+}

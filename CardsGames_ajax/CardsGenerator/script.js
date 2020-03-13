@@ -35,7 +35,7 @@ generateBtn.addEventListener("click", () => {
 
     // in case of error throw alert
     xhr.onerror = function () {
-        alert(`Something went wrong during the transaction: \n ${this.responseText}`);
+        alert("Something went wrong during the transaction");
     };
 
     xhr.onload = function () {
