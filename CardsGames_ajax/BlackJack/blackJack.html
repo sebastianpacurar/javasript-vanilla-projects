@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Black Jack Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1>Black Jack Game</h1>
+
+<input type="radio" class="difficulty" name="difficulty" value="2" id="normal-two" checked="checked">
+<label for="normal-two">Normal game with 2 decks</label><br>
+
+<input type="radio" class="difficulty" name="difficulty" value="3" id="normal-three">
+<label for="normal-three">Normal game with 3 decks</label><br>
+
+<input type="radio" class="difficulty" name="difficulty" value="6" id="casino-7">
+<label for="casino-7">Casino game with 6 decks</label><br>
+
+<input type="radio" class="difficulty" name="difficulty" value="7" id="casino-8">
+<label for="casino-8">Casino game with 7 decks</label><br>
+
+<button id="generate-cards">Start Game</button>
+<button id="play">Play Game</button>
+
+<div class="deck-details">
+    <p>Deck ID: <span id="deck-id"></span></p>
+    <p>Remaining cards: <span id="remaining-cards"></span></p>
+</div>
+
+<button id="draw">Hit</button>
+<button id="stand">Stand</button>
+<button id="show-results">Show Results</button>
+
+<hr>
+
+<p>Dealer has: <span id="dealer-points"></span></p>
+
+<div class="column" id="dealer-cards"></div>
+
+<p>You have: <span id="your-points"></span></p>
+
+<div class="column" id="player-cards"></div>
+<script src="blackJack.js"></script>
+</body>
+</html>
