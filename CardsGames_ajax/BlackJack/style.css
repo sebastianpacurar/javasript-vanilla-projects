@@ -10,7 +10,7 @@ img {
 }
 
 div.deck-details {
-    display: block;
+    display: none;
 }
 
 button {
