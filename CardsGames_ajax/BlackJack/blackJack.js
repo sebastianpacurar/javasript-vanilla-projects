@@ -13,28 +13,40 @@ const cards = {
     "7": 7,
     "8": 8,
     "9": 9,
-    "0": 10
+    "10": 10
 };
 
-const playerPoints = [],
-    dealerPoints = [],
-    hiddenCardImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjc1IAS39hgUEEyR_LwzIVJiSc8o6MGXR9_k3Z9K7g4DVcF1JR";
+let playerPoints = [],
+    dealerPoints = [];
+
+// this is the image used to hide the first 2 cards of the dealer until "Stand" button is clicked or player goes bust
+const hiddenCardImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjc1IAS39hgUEEyR_LwzIVJiSc8o6MGXR9_k3Z9K7g4DVcF1JR";
 
 let hiddenDealerCard1 = null,
     hiddenDealerCard2 = null,
-    hitCount = 2;       // this will be used when "Hit" button is pressed in order to calculate the points from the third card and beyond
+
+    // this will be used when "Hit" button is pressed in order to calculate the points from the third card and beyond
+    playerHitCount = 2,
+    dealerHitCount = 2,
+
+    // the actual score incremented by one after each round depending on who won
+    playerScore = 0,
+    dealerScore = 0;
 
 
 const startBtn = document.getElementById("generate-cards"),
     playBtn = document.getElementById("play"),
+    hitBtn = document.getElementById("draw"),
+    standBtn = document.getElementById("stand"),
     deckIdSpan = document.getElementById("deck-id"),
     remainingCardsSpan = document.getElementById("remaining-cards"),
     difficultyRadioBtns = document.getElementsByClassName("difficulty"),
     dealerCards = document.getElementById("dealer-cards"),
     playerCards = document.getElementById("player-cards"),
-    hitBtn = document.getElementById("draw"),
     playerPointsSpan = document.getElementById("your-points"),
-    dealerPointsSpan = document.getElementById("dealer-points");
+    dealerPointsSpan = document.getElementById("dealer-points"),
+    playerScoreSpan = document.getElementById("your-score"),
+    dealerScoreSpan = document.getElementById("dealer-score");
 
 
 // grab the difficulty value in order to make the AJAX call return x number of decks
@@ -49,6 +61,7 @@ let getDifficulty = () => {
 // generate the cards
 function generateDeck() {
     startBtn.disabled = true;
+    playBtn.disabled = false;
 
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=${getDifficulty()}`, true);
@@ -67,9 +80,38 @@ function generateDeck() {
     };
 }
 
+// clear all the cards for starting a new game
+function cleanUpCards() {
+
+    // remove cards for dealer
+    while (dealerCards.children.length > 0) {
+        dealerCards.children[0].remove();
+    }
+
+    // remove cards for player
+    while (playerCards.children.length > 0) {
+        playerCards.children[0].remove();
+    }
+
+    // empty dealerPoints array
+    dealerPoints = [];
+    dealerScoreSpan.textContent = "0";
+
+    // empty playerPoints array
+    playerPoints = [];
+    playerScoreSpan.textContent = "0";
+}
+
 // start the game by drawing 2 cards for the dealer and 2 cards for the player
 function drawTwoCards() {
+
+    cleanUpCards();
+
+    // disable "Play" Button and enable "Hit" and "Stand" buttons until the game is over
     playBtn.disabled = true;
+    hitBtn.disabled = false;
+    standBtn.disabled = false;
+    dealerScoreSpan.style.display = "none";
 
     const xhr = new XMLHttpRequest();
 
@@ -82,7 +124,7 @@ function drawTwoCards() {
     };
     xhr.onload = function () {
         if (this.status !== 200) {
-            alert("Something went wrong.");
+            alert(`Something went wrong. Status code is ${this.status}`);
         }
         const data = JSON.parse(this.responseText);         // parse the response text to JSON
         remainingCardsSpan.textContent = data.remaining;    // for every card drawn reduce remainingCards quantity
@@ -92,25 +134,25 @@ function drawTwoCards() {
             const childElement = document.createElement("img");
             childElement.src = `${data.cards[i].image}`;    // grab the card "image" from the API request and assign it as src
             childElement.alt = `${data.cards[i].value}`;    // grab the card "value" from the API request and assign it as alt
-            const score = childElement.alt;                 // in case there is an ACE, which can be 1 or 11, we go with the 11
+            const cardPoints = childElement.alt;                 // in case there is an ACE, which can be 1 or 11, we go with the 11
 
             if (dealerCards.children.length < 2) {
                 // append 2 cards to dealer
                 dealerCards.appendChild(childElement);
-                if (score === "ACE" && dealerPoints[0] !== 11) {
-                    dealerPoints.push(Number(cards[score][1]))      // append 11 instead of 1
+                if (cardPoints === "ACE" && dealerPoints[0] !== 11) {
+                    dealerPoints.push(Number(cards[cardPoints][1]))      // append 11 instead of 1
                 } else {
                     // add the value of the cards object relevant to the card value into the "dealerPoints" array
-                    dealerPoints.push(parseInt(cards[score][0]) ? cards[score] instanceof Array : cards[score]);
+                    dealerPoints.push(parseInt(cards[cardPoints][0]) ? cards[cardPoints] instanceof Array : cards[cardPoints]);
                 }
             } else {
                 // after that append 2 cards to player
                 playerCards.appendChild(childElement);
-                if (score === "ACE" && dealerPoints[0] !== 11) {
-                    playerPoints.push(parseInt(cards[score][1]));   // append 11 instead of 1
+                if (cardPoints === "ACE" && dealerPoints[0] !== 11) {
+                    playerPoints.push(parseInt(cards[cardPoints][1]));   // append 11 instead of 1
                 } else {
                     // add the value of the cards object relevant to the card value into the "playerPoints" array
-                    playerPoints.push(parseInt(cards[score][0]) ? cards[score] instanceof Array : cards[score]);
+                    playerPoints.push(parseInt(cards[cardPoints][0]) ? cards[cardPoints] instanceof Array : cards[cardPoints]);
                 }
             }
         }
@@ -124,8 +166,17 @@ function drawTwoCards() {
     };
 }
 
-
 hitBtn.addEventListener("click", () => {
+
+    // if you went over 21 you lost. if you get 21 the dealer plays his cards
+    if (parseInt(playerPointsSpan.textContent) > 21) {
+        alert("You went over 21. BUST");
+        return;
+    } else if (parseInt(playerPointsSpan.textContent) === 21) {
+        while (parseInt(dealerPointsSpan.textContent) < 17) {
+            finishGame();
+        }
+    }
     const xhr = new XMLHttpRequest();
 
     // the AJAX request method to retrieve 1 card per each "hit" button click
@@ -140,12 +191,13 @@ hitBtn.addEventListener("click", () => {
     xhr.onload = function () {
         if (this.status !== 200) {
             // if status code is not success throw error
-            alert(`Something went wrong. the code is ${this.status} with the following: ${this.statusText}`);
+            alert(`Something went wrong. Status code is ${this.status}`);
         }
 
         const data = JSON.parse(this.responseText);
 
         let output = "";
+
 
         // for every card drawn, append an image child to "player-cards" div
         for (let i in data.cards) {
@@ -154,18 +206,94 @@ hitBtn.addEventListener("click", () => {
         playerCards.innerHTML += output;  // keep appending the images until you wish to press "Stand"
 
         // in order to add the points from the third we need to set a variable to keep track of the cards added eventually
-        playerPoints.push(parseInt(cards[playerCards.children[hitCount].alt]));
-        hitCount++;
+        playerPoints.push(parseInt(cards[playerCards.children[playerHitCount].alt]));
+        playerHitCount++;
 
         // calculate the accumulated points from the "playerPoints" array
         playerPointsSpan.textContent = String(playerPoints.reduce((a, b) => a + b));
 
-        if(playerPointsSpan.textContent > 21) {
-            alert("You went over 21. BUST")
+        // if you went over 21 you lost.
+        if (parseInt(playerPointsSpan.textContent) > 21) {
+            alert("You went over 21. BUST");
+            finishGame();
         }
     };
 });
 
+function finishGame() {
+
+    // reveal the dealer's first two cards
+    showDealerCards();
+
+    dealerPointsSpan.style.display = "block";
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `https://deckofcardsapi.com/api/deck/${deckIdSpan.textContent}/draw/?count=10`, true);
+    xhr.send();
+
+    // in case of error throw alert
+    xhr.onerror = function () {
+        alert("Something went wrong during the transaction of drawing a card for the dealer");
+    };
+
+    xhr.onload = function () {
+
+        if (this.status !== 200) {
+            // if status code is not success throw error
+            alert(`Something went wrong. Status code is ${this.status}`);
+        }
+
+        const data = JSON.parse(this.responseText);
+
+        let output = "";
+
+        // for every card drawn, append an image child to "player-cards" div
+        for (let i in data.cards) {
+            while (parseInt(dealerPointsSpan.textContent) < 17) {
+                output += `<img src="${data.cards[i].image}" alt="${data.cards[i].value}"/>`;
+
+                dealerCards.innerHTML += output;  // keep appending the images until you wish to press "Stand"
+
+                // in order to add the points from the third we need to set a variable to keep track of the cards added eventually
+                dealerPoints.push(parseInt(cards[dealerCards.children[dealerHitCount].alt]));
+                dealerHitCount++;
+
+                // calculate the accumulated points from the "playerPoints" array
+                dealerPointsSpan.textContent = String(dealerPoints.reduce((a, b) => a + b));
+            }
+        }
+
+        const dealerPointsValue = parseInt(dealerPointsSpan.textContent);
+        const playerPointsValue = parseInt(playerPointsSpan.textContent);
+
+
+        // TODO need to find a better logic here
+        // if dealer wins add increment score with 1, same goes for player. if they both lose, no incrementation
+        if (dealerPointsValue < playerPointsValue && playerPointsValue <= 21) {
+            playerScore += 1;
+        } else if (playerPointsValue < dealerPointsValue && dealerPointsValue <= 21) {
+            dealerScore += 1;
+        }
+
+        if(dealerPoints > 21 && playerPoints <= 21){
+            playerScore += 1;
+        } else if (playerPoints > 21 && dealerPoints <= 21) {
+            dealerScore += 1;
+        }
+
+        // make Play Button clickable again since the game is over
+        playBtn.disabled = false;
+
+        // disable "Hit" and "Stand" buttons
+        hitBtn.disabled = true;
+        standBtn.disabled = true;
+
+        // display score
+        playerScoreSpan.textContent = playerScore;
+        dealerScoreSpan.textContent = dealerScore;
+    }
+}
 
 // hide the cards which the dealer has by temporary switching the image src with a different link
 function hideDealerCards() {
@@ -185,3 +313,4 @@ function showDealerCards() {
 
 startBtn.addEventListener("click", generateDeck);
 playBtn.addEventListener("click", drawTwoCards);
+standBtn.addEventListener("click", finishGame);

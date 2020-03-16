@@ -13,6 +13,10 @@ div.deck-details {
     display: none;
 }
 
+span#dealer-points {
+    display: none;
+}
+
 button {
     margin: 5px;
     padding: 5px;

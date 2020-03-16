@@ -22,21 +22,16 @@
 <label for="casino-8">Casino game with 7 decks</label><br>
 
 <button id="generate-cards">Start Game</button>
-<button id="play">Play Game</button>
+<button id="play" disabled="disabled">Play Game</button>
 
 <div class="deck-details">
     <p>Deck ID: <span id="deck-id"></span></p>
     <p>Remaining cards: <span id="remaining-cards"></span></p>
 </div>
 
-<br>
-<div>
-    <p id="endGame"></p>
-</div>
-<br>
 
-<button id="draw">Hit</button>
-<button id="stand">Stand</button>
+<button id="draw" disabled="disabled">Hit</button>
+<button id="stand" disabled="disabled">Stand</button>
 
 <hr>
 
@@ -47,6 +42,11 @@
 <p>You have: <span id="your-points"></span></p>
 
 <div class="column" id="player-cards"></div>
+
+<div>
+    <p>Dealer Score: <span id="dealer-score">0</span></p>
+    <p>Your Score: <span id="your-score">0</span></p>
+</div>
 <script src="blackJack.js"></script>
 </body>
 </html>
