@@ -17,6 +17,11 @@ span#dealer-points {
     display: none;
 }
 
+div#cards-table {
+    background-color: forestgreen;
+    color: white;
+}
+
 button {
     margin: 5px;
     padding: 5px;
