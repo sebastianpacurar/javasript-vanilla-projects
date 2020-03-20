@@ -139,7 +139,7 @@ function drawTwoCards() {
             const childElement = document.createElement("img");
             childElement.src = `${data.cards[i].image}`;    // grab the card "image" from the API request and assign it as src
             childElement.alt = `${data.cards[i].value}`;    // grab the card "value" from the API request and assign it as alt
-            const cardPoints = childElement.alt;                 // in case there is an ACE, which can be 1 or 11, we go with the 11
+            const cardPoints = childElement.alt;            // in case there is an ACE, which can be 1 or 11, we go with the 11
 
             if (dealerCards.children.length < 2) {
                 // append 2 cards to dealer
@@ -225,7 +225,7 @@ hitBtn.addEventListener("click", () => {
             playerPointsSpan.textContent = String(playerPoints.reduce((a, b) => a + b));
 
             // if player has 21 points from the very first 2 drawn cards, automatically hit "Stand" button
-            if(parseInt(playerPointsSpan.textContent) === 21) {
+            if (parseInt(playerPointsSpan.textContent) === 21) {
                 finishGame()
             }
         }
@@ -245,8 +245,8 @@ function finishGame() {
 
     const xhr = new XMLHttpRequest();
 
-    // I calculated that you need exactly 5 cards on the table for a match. This might be faulty with 6-7 decks
-    xhr.open("GET", `https://deckofcardsapi.com/api/deck/${deckIdSpan.textContent}/draw/?count=3`, true);
+    // I calculated that you need exactly 7 cards on the table for a match (in case you get low cards). This will work properly with more decks
+    xhr.open("GET", `https://deckofcardsapi.com/api/deck/${deckIdSpan.textContent}/draw/?count=5`, true);
     xhr.send();
 
     // in case of error throw alert
@@ -262,33 +262,33 @@ function finishGame() {
         }
 
         const data = JSON.parse(this.responseText);
-        let output = "";
 
         // for every card drawn, append an image child to "player-cards" div
         for (let i in data.cards) {
 
             // if dealer is BUST or it has exactly 17 points or higher from the very first 2 cards, break iteration
-            if (dealerPointsSpan.textContent === "BUST" || parseInt(dealerPointsSpan.textContent) >= 17){
+            if (dealerPointsSpan.textContent === "BUST" || parseInt(dealerPointsSpan.textContent) >= 17) {
                 break;
             }
-            while (parseInt(dealerPointsSpan.textContent) < 17) {
-                output += `<img src="${data.cards[i].image}" alt="${data.cards[i].value}"/>`;
 
-                dealerCards.innerHTML += output;  // keep appending the images until you wish to press "Stand"
+            const childElement = document.createElement("img");
+            childElement.src = `${data.cards[i].image}`;    // grab the card "image" from the API request and assign it as src
+            childElement.alt = `${data.cards[i].value}`;    // grab the card "value" from the API request and assign it as alt
 
-                // in order to add the points from the third we need to set a variable to keep track of the cards added eventually
-                dealerPoints.push(parseInt(cards[dealerCards.children[dealerHitCount].alt]));
-                dealerHitCount++;
+            dealerCards.appendChild(childElement);
 
-                // calculate the accumulated points from the "playerPoints" array. if dealer gets over 21 he goes BUST
-                if (dealerPoints.reduce((a, b) => a + b) > 21) {
-                    // break while loop if dealer goes BUST
-                    dealerPointsSpan.textContent = "BUST";
-                    break;
-                } else {
-                    dealerPointsSpan.textContent = String(dealerPoints.reduce((a, b) => a + b));
-                }
+            // in order to add the points from the third we need to set a variable to keep track of the cards added eventually
+            dealerPoints.push(parseInt(cards[dealerCards.children[dealerHitCount].alt]));
+            dealerHitCount++;
+
+            // calculate the accumulated points from the "playerPoints" array. if dealer gets over 21 he goes BUST
+            if (dealerPoints.reduce((a, b) => a + b) > 21) {
+                // break while loop if dealer goes BUST
+                dealerPointsSpan.textContent = "BUST";
+            } else {
+                dealerPointsSpan.textContent = String(dealerPoints.reduce((a, b) => a + b));
             }
+
         }
 
         // save the dealer and player points in 2 variables to be able to make conditions below easier to read
@@ -296,9 +296,9 @@ function finishGame() {
         const playerPointsValue = Number(playerPointsSpan.textContent);
 
         // if dealer wins add increment score with 1, same goes for player. if they both get BUST, no incrementation
-        if (isNaN(playerPointsValue) && dealerPointsValue <= 21){
+        if (isNaN(playerPointsValue) && dealerPointsValue <= 21) {
             dealerScore += 1;
-        } else if (isNaN(dealerPointsValue) && playerPointsValue <= 21){
+        } else if (isNaN(dealerPointsValue) && playerPointsValue <= 21) {
             playerScore += 1;
         } else if (dealerPointsValue < playerPointsValue && playerPointsValue <= 21) {
             playerScore += 1;

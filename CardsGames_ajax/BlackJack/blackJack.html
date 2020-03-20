@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Black Jack Game</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Jack game of cards</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
 
@@ -35,15 +38,18 @@
 
 <hr>
 
-<p>Dealer has: <span id="dealer-points"></span></p>
-<div class="column" id="dealer-cards"></div>
+<div id="cards-table">
+    <p>Dealer has: <span id="dealer-points"></span></p>
+    <div class="column" id="dealer-cards"></div>
 
-<p>You have: <span id="your-points"></span></p>
-<div class="column" id="player-cards"></div>
+    <p>You have: <span id="your-points"></span></p>
+    <div class="column" id="player-cards"></div>
 
-<div>
-    <p>Dealer Score: <span id="dealer-score">0</span></p>
-    <p>Your Score: <span id="your-score">0</span></p>
+    <div>
+        <p>Dealer Score: <span id="dealer-score">0</span></p>
+        <p>Your Score: <span id="your-score">0</span></p>
+    </div>
+
 </div>
 <script src="blackJack.js"></script>
 </body>
