@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+}
+
+/* grid containers*/
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100vh, auto);
+}
+
+#left-container {
+    background-color: darkorange;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    justify-items: center;
+}
+
+#right-container {
+    background-color: cyan;
+    grid-template-rows: 1fr;
+}
+
+
+/* header */
+h2 {
+    text-align: center;
+}
+
+
+/* list area */
+ul {
+    width: 500px;
+}
+
+li {
+    font-size: 20px;
+    padding: 10px;
+    list-style-type: none;
+    margin-right: 40px;
+    background-color: navajowhite;
+    margin-top: 10px;
+    border-left: solid 3px mediumvioletred;
+}
+
+.add-btn {
+    width: 50px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    text-align: center;
+}
+
+.remove-btn {
+    width: 75px;
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    margin-right: 10px;
+    text-align: center;
+}
+
+span {
+    user-select: none;
+    outline: none;
+}
+
+span:hover {
+    background-color: cornflowerblue;
+}
+
+span:active {
+    background-color: lightsteelblue;
+}
+
+
+/* form area */
+label {
+    font-size: 20px;
+}
+
+form {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: flex-start;
+}
+
+input[type="text"] {
+    display: block;
+    font-size: 20px;
+    height: 25px;
+    outline: none;
+}
+
+#add-product-btn {
+    font-size: 15px;
+    height: 30px;
+    background-color: turquoise;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+#add-product-btn:hover {
+    background-color: darkcyan;
+}
+
+#add-product-btn:active {
+    background-color: darkgoldenrod;
+}
