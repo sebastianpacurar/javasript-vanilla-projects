@@ -1,5 +1,12 @@
-# javascript-projects
-personal projects
+# Javascript Vanilla Projects
 
-solutions for js.checkio.org:
-https://js.checkio.org/user/pacurar.sebastian90/solutions/share/049b87151122827d47d98cd92b311837/
+#### This repository is about vanilla javascript projects I made for fun.
+
+<br />
+
+#### Projects Links:
+* [shopping-list](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/shopping-list)
+* [black-jack](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/black-jack)
+* [playing-cards-generator](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/playing-cards-generator)
+* [word-color-game](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/word-color-game)
+
