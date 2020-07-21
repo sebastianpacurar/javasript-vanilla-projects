@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: sans-serif;
 }
 
 /* grid containers*/
@@ -13,7 +14,7 @@ body {
 #left-container {
     background-color: darkorange;
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 3fr 2fr;
     justify-items: center;
 }
 
@@ -29,50 +30,72 @@ h2 {
 }
 
 
-/* list area */
+/* products list area */
 ul {
+    background-color: lightslategrey;
+    border: none 2px cornflowerblue;
+    border-radius: 20px;
+    padding: 10px 20px 10px 10px;
     width: 500px;
+    position: relative;
+    max-height: 350px;
+    overflow-y: auto;
 }
 
 li {
-    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 20px;
     padding: 10px;
     list-style-type: none;
-    margin-right: 40px;
     background-color: navajowhite;
     margin-top: 10px;
     border-left: solid 3px mediumvioletred;
 }
 
-.add-btn {
-    width: 50px;
-    background-color: lightgreen;
-    border: none;
-    border-radius: 5px;
-    float: right;
-    text-align: center;
-}
-
-.remove-btn {
-    width: 75px;
-    background-color: lightsalmon;
-    border: none;
-    border-radius: 5px;
-    float: right;
+li span.product-price {
     margin-right: 10px;
-    text-align: center;
 }
 
 span {
+    border: none;
+    font-size: 20px;
+    text-align: center;
+}
+
+span.product-name {
+    margin-right: auto;
+}
+
+li span.buy-btn, li span.remove-btn-list, table .remove-btn-table {
+    cursor: pointer;
     user-select: none;
     outline: none;
 }
 
-span:hover {
+li span.buy-btn {
+    width: 50px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+li span.remove-btn-list {
+    width: 75px;
+    background-color: lightsalmon;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+
+li span.buy-btn:hover, li span.remove-btn-list:hover {
     background-color: cornflowerblue;
 }
 
-span:active {
+li span.buy-btn:active, li span.remove-btn-list:active {
     background-color: lightsteelblue;
 }
 
@@ -84,11 +107,11 @@ label {
 
 form {
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 33% 33% 33%;
     align-items: flex-start;
 }
 
-input[type="text"] {
+input {
     display: block;
     font-size: 20px;
     height: 25px;
@@ -110,4 +133,70 @@ input[type="text"] {
 
 #add-product-btn:active {
     background-color: darkgoldenrod;
+}
+
+
+/* bought items (table)*/
+
+div.table-container {
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+table {
+    width: 98%;
+    border-collapse: collapse;
+    font-size: 20px;
+    max-height: 98%;
+    overflow-y: auto;
+}
+
+
+th {
+    position: sticky;
+    top: -1px;
+    background-color: greenyellow;
+    border: 1px solid #8a2be2;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid #8a2be2;
+    text-align: center;
+    padding: 8px;
+    user-select: text;
+}
+
+tr:nth-child(even) {
+    background-color: #e8e8e8;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+tr:hover {
+    background-color: lightblue;
+}
+
+span.remove-btn-table {
+    float: right;
+    width: 30px;
+    color: red;
+    background-color: orange;
+    border-radius: 15px;
+}
+
+span.remove-btn-table:hover {
+    background-color: red;
+    color: orange;
+}
+
+span.remove-btn-table:active {
+    background-color: black;
+    color: white;
 }
