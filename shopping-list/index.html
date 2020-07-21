@@ -16,32 +16,43 @@
         <h2>Shopping List</h2>
 
         <ul id="products-list">
-            <li>product<span class="add-btn">Add</span>
-                <span class="remove-btn">Remove</span>
-            </li>
-            <li>product<span class="add-btn">Add</span>
-                <span class="remove-btn">Remove</span>
-            </li>
-            <li>product<span class="add-btn">Add</span>
-                <span class="remove-btn">Remove</span>
-            </li>
-            <li>product<span class="add-btn">Add</span>
-                <span class="remove-btn">Remove</span>
-            </li>
-            <li>product<span class="add-btn">Add</span>
-                <span class="remove-btn">Remove</span>
+            <li>
+                <span class="product-name">product name</span>
+                <span class="product-price">23.32</span>
+                <span class="remove-btn-list">Remove</span>
+                <span class="buy-btn">Buy</span>
             </li>
         </ul>
 
         <form id="add-item" class="form-container">
-            <label>Insert Product:<input type="text" id="addInput">
+            <label>Insert Name of Product:<input type="text" maxlength="25" placeholder="product name" id="addInput">
+            </label>
+
+            <label>Insert Price of Product:<input type="number" step="any" placeholder="product price" id="addPrice">
             </label>
 
             <button id="add-product-btn">Add product</button>
         </form>
     </div>
 
-    <div id="right-container"></div>
+    <div id="right-container">
+        <h2>Bought Items</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Product price</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script src="script.js"></script>
