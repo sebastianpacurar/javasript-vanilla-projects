@@ -13,31 +13,38 @@
 <div id="container">
 
     <div id="left-container">
-        <h2>Shopping List</h2>
+        <h2 id="left-header">Shopping List</h2>
 
-        <ul id="products-list">
+        <div id="list-container">
             <p id="is-list-empty">List is empty</p>
-            <li>
-                <span class="product-name">product name</span>
-                <span class="product-price">$23.32</span>
-                <span class="remove-btn-list">Remove</span>
-                <span class="buy-btn">Buy</span>
-            </li>
-        </ul>
+
+            <ul id="products-list">
+                <li>
+                    <span class="product-name">product name</span>
+                    <span class="product-price">$23.32</span>
+                    <span class="remove-btn-list">Remove</span>
+                    <span class="buy-btn">Buy</span>
+                </li>
+            </ul>
+        </div>
 
         <form id="add-item" class="form-container">
-            <label>Insert Name of Product:<input type="text" maxlength="25" placeholder="product name" id="addInput">
-            </label>
+            <div id="container-product-input">
+                <label for="addInput">Insert Name of Product: </label>
+                <input type="text" minlength="3" maxlength="15" placeholder="product name" id="addInput">
+            </div>
 
-            <label>Insert Price of Product:<input type="number" step="any" placeholder="product price" id="addPrice">
-            </label>
+            <div id="container-price-input">
+                <label for="addPrice">Insert Price of Product: </label>
+                <input type="number" step="any" placeholder="product price" id="addPrice">
+            </div>
 
             <button id="add-product-btn">Add product</button>
         </form>
     </div>
 
     <div id="right-container">
-        <h2>Bought Items</h2>
+        <h2 id="right-header">Bought Items</h2>
 
         <div class="table-container">
             <table>
