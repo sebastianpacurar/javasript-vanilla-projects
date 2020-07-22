@@ -3,8 +3,8 @@ body {
     font-family: sans-serif;
 }
 
-/* grid containers*/
 
+/* grid containers*/
 #container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -30,7 +30,7 @@ h2 {
     text-align: center;
 }
 
-#is-list-empty {
+p#is-list-empty {
     text-align: center;
     font-size: 20px;
     font-weight: bolder;
@@ -38,19 +38,29 @@ h2 {
     display: none;
 }
 
+
 /* products list area */
-ul {
+div#list-container {
+    width: 80%;
+    min-width: 445px;
+    border-radius: 20px;
+    background-color: cornflowerblue;
+    border: none 1px cornflowerblue;
+    height: 290px;
+    overflow-y: auto;
+}
+
+ul#products-list {
     align-self: flex-start;
-    background-color: lightslategrey;
     border: none 2px cornflowerblue;
     border-radius: 20px;
-    padding: 10px 20px 10px 10px;
-    width: 80%;
+    padding: 10px 10px 10px 10px;
+    width: auto;
     height: auto;
     min-width: 390px;
     position: relative;
     max-height: 250px;
-    overflow-y: auto;
+    visibility: visible;
 }
 
 li {
@@ -64,6 +74,7 @@ li {
     background-color: navajowhite;
     margin-top: 10px;
     border-left: solid 3px mediumvioletred;
+    border-right: solid 3px mediumvioletred;
 }
 
 li span.product-price {
@@ -148,7 +159,6 @@ input {
 
 
 /* bought items (table)*/
-
 div.table-container {
     display: flex;
     flex-direction: row;
@@ -195,6 +205,10 @@ tr:hover {
     background-color: lightblue;
 }
 
+tfoot tr td {
+    background-color: lightcoral;
+}
+
 span.remove-btn-table {
     float: right;
     width: 30px;
@@ -211,4 +225,107 @@ span.remove-btn-table:hover {
 span.remove-btn-table:active {
     background-color: black;
     color: white;
+}
+
+
+/* responsive design section*/
+/* for screen between 0 and 500 px*/
+@media screen and (min-width: 0px) and (max-width: 500px) {
+    #container {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-auto-rows: minmax(500px, auto);
+    }
+
+    #left-container {
+        background-color: darkorange;
+        grid-template-rows: 10% 30% 60%;
+        display: grid;
+        justify-items: center;
+        grid-template-areas:
+        "title"
+        "form"
+        "list";
+    }
+
+    #right-container {
+        background-color: cyan;
+        display: grid;
+        grid-template-rows: 10% 90%;
+    }
+
+    h2#left-header {
+        align-self: center;
+        grid-area: title;
+    }
+
+    form {
+        display: grid;
+        grid-template-rows: 33% 33% 33%;
+        align-items: flex-end;
+        grid-area: form;
+    }
+
+    label {
+        display: none;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 175px;
+        align-self: flex-start;
+    }
+
+    #add-product-btn {
+        align-self: flex-start;
+    }
+
+    div#list-container {
+        width: 100%;
+        min-width: 300px;
+        border-radius: 20px;
+        background-color: cornflowerblue;
+        border: none 1px cornflowerblue;
+        height: 300px;
+        max-height: 290px;
+        overflow-y: auto;
+    }
+
+    ul#products-list {
+        background-color: inherit;
+        align-self: flex-start;
+        border-radius: 20px;
+        min-width: 300px;
+        position: relative;
+        grid-area: list;
+    }
+
+    li {
+        min-width: 350px;
+        height: 10px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    li span.product-price {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    li span.remove-btn-list {
+        height: 20px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    li span.buy-btn {
+        height: 20px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    li span.product-name {
+        height: 20px;
+        font-size: 15px;
+        font-weight: bold;
+    }
 }

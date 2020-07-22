@@ -6,23 +6,43 @@ const list = document.getElementById('products-list'),
     form = document.forms['add-item'],
     table = document.querySelector('table'),
     tbody = document.querySelector('tbody'),
-    tableProductCells = document.getElementsByClassName('product-cell');
+    tfoot = document.querySelector('tfoot'),
+    tableProductCells = document.getElementsByClassName('product-cell'),
+    tableQuantityCells = document.getElementsByClassName('quantity-cell'),
+    tablePriceCells = document.getElementsByClassName('price-cell');
 
 
 const isListEmpty = () => {
     if (listItems.length === 0) {
         emptyListNotification.style.display = 'block';
+        list.style.visibility = 'hidden';
     } else {
         emptyListNotification.style.display = 'none';
+        list.style.visibility = 'visible';
     }
 };
 
 
-// check if there are items in the list only once right when the program runs using an IIFE
-(function isListEmpty() {
+/*
+   hide the list check if there are no items, and add footer row and cells only once,
+     right when the program runs using an IIFE
+*/
+(() => {
     if (listItems.length === 0) {
         emptyListNotification.style.visibility = 'visible';
+        list.style.visibility = 'hidden';
     }
+
+    // add table row and cells for footer
+    const footerRow = tfoot.insertRow(0),
+        totalCell = footerRow.insertCell(0),
+        totalQuantityCell = footerRow.insertCell(1),
+        totalPriceCell = footerRow.insertCell(2);
+
+    totalCell.id = 'total-footer';
+    totalQuantityCell.id = 'quantity-footer';
+    totalPriceCell.id = 'price-footer';
+
 })();
 
 
@@ -33,6 +53,22 @@ const formatPrice = (price) => {
         return `$${(Math.random() * 20).toFixed(2)}`;
     }
 };
+
+const calculateTotal = () => {
+    /*
+    map the quantity and totalPrices into arrays,
+      and then use reduce over their values to get overall quantity and price
+ */
+    const totalQuantity = Array.from(tableQuantityCells).map(item => parseInt(item.textContent)),
+        totalPrice = Array.from(tablePriceCells).map(item => parseFloat(item.textContent.split('$')[1]));
+
+    document.getElementById('total-footer').textContent = 'TOTAL';
+    document.getElementById('quantity-footer').textContent =
+        (totalQuantity.reduce((acc, val) => acc + val, 0)).toString();
+
+    document.getElementById('price-footer').textContent =
+        `$${totalPrice.reduce((acc, val) => acc + val, 0).toFixed(2)}`;
+}
 
 
 /*
@@ -48,6 +84,7 @@ list.addEventListener('click', e => {
             list.removeChild(listItem);
 
         } else if (e.target.className === 'buy-btn') {
+            list.removeChild(listItem);
             document.querySelector('table').style.visibility = 'visible';
 
             const boughtProductName = e.target.parentNode.querySelector('.product-name').textContent;
@@ -76,6 +113,7 @@ list.addEventListener('click', e => {
                 nameCell.innerHTML = `${boughtProductName}<span class="remove-btn-table">x</span>`;
                 quantityCell.textContent = '1';
                 priceCell.textContent = boughtProductPrice;
+
             } else {
 
                 // if item is already present in table, make sum between the initial price and new price, and increase quantity by one
@@ -89,7 +127,7 @@ list.addEventListener('click', e => {
                             if (cell.className === 'price-cell') {
                                 const initialPrice = parseFloat(cell.textContent.split('$')[1]);
                                 const newPrice = parseFloat(e.target.parentNode.querySelector('.product-price').textContent.split('$')[1]);
-                                cell.textContent = `$${(initialPrice + newPrice)}`;
+                                cell.textContent = `$${(initialPrice + newPrice).toFixed(2)}`;
                             }
 
                             if (cell.className === 'quantity-cell') {
@@ -99,7 +137,7 @@ list.addEventListener('click', e => {
                     }
                 }
             }
-            list.removeChild(listItem);
+            calculateTotal();
         }
         isListEmpty();
     }
@@ -152,6 +190,8 @@ tbody.addEventListener('click', e => {
     if (e.target.className === 'remove-btn-table') {
         const tableRow = e.target.parentNode.parentNode;
         tbody.removeChild(tableRow);
+
+        calculateTotal();
 
         // if there are no products in table, hide the table
         if (tableProductCells.length === 0) {
