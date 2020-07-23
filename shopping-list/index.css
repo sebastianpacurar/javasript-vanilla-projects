@@ -59,6 +59,7 @@ ul#products-list {
     position: relative;
     max-height: 250px;
     visibility: visible;
+    overflow: auto;
 }
 
 li {
