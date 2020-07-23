@@ -42,7 +42,6 @@ const isListEmpty = () => {
     totalCell.id = 'total-footer';
     totalQuantityCell.id = 'quantity-footer';
     totalPriceCell.id = 'price-footer';
-
 })();
 
 
@@ -50,9 +49,10 @@ const formatPrice = (price) => {
     if (price.length > 0) {
         return `$${parseFloat(price).toFixed(2)}`;
     } else {
-        return `$${(Math.random() * 20).toFixed(2)}`;
+        return `$${((Math.random() * 20) + 1).toFixed(2)}`;
     }
 };
+
 
 const calculateTotal = () => {
     /*
