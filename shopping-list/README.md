@@ -15,5 +15,3 @@
 * if there are a lot of bought items in the table, the table can be scrolled / swiped
 
 <br />
-
-#### More to come
