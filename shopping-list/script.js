@@ -151,7 +151,7 @@ form.addEventListener('submit', (e) => {
     const productInput = form.querySelector('#addInput').value.trim(),
         priceInput = form.querySelector('#addPrice').value.trim();
 
-    if (productInput.length > 0) {
+    if (parseFloat(priceInput) > 0) {
 
         const listItem = document.createElement('LI');
 
@@ -179,6 +179,9 @@ form.addEventListener('submit', (e) => {
         list.appendChild(listItem);
 
         form.querySelector('#addInput').value = '';
+        form.querySelector('#addPrice').value = '';
+    } else if (parseFloat(priceInput) < 0){
+        alert('Price cannot be a negative value');
         form.querySelector('#addPrice').value = '';
     }
     isListEmpty();

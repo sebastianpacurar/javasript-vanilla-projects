@@ -50,7 +50,6 @@ div#list-container {
 }
 
 ul#products-list {
-    align-self: flex-start;
     border-radius: 20px;
     padding: 10px 10px 10px 10px;
     width: auto;
@@ -64,8 +63,6 @@ ul#products-list {
 
 li {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
     height: 20px;
     padding: 10px;
@@ -159,7 +156,6 @@ input {
 /* bought items (table) area*/
 div.table-container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     height: 80%;
     overflow-y: auto;
