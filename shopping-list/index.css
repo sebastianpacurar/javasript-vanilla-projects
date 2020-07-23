@@ -45,7 +45,7 @@ div#list-container {
     min-width: 445px;
     border-radius: 20px;
     background-color: cornflowerblue;
-    height: 290px;
+    height: 90%;
     overflow-y: auto;
 }
 
@@ -160,14 +160,13 @@ div.table-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    max-height: 500px;
+    height: 80%;
     overflow-y: auto;
 }
 
 table {
     visibility: hidden;
     width: 98%;
-    min-width: 390px;
     border-collapse: collapse;
     font-size: 20px;
     margin-top: 20px;
@@ -233,8 +232,8 @@ span.remove-btn-table:active {
 
 
 /* responsive design section*/
-/* for screen between 0 and 500 px*/
-@media screen and (min-width: 0px) and (max-width: 500px) {
+/* for screen between 372 and 845 px*/
+@media screen and (min-width: 372px) and (max-width: 845px) {
 
     /* grid containers area*/
     #container {
@@ -281,8 +280,6 @@ span.remove-btn-table:active {
         min-width: 300px;
         border-bottom: solid 10px cornflowerblue;
         border-top: solid 7px cornflowerblue;
-        height: 280px;
-        max-height: 280px;
     }
 
     ul#products-list {
@@ -294,7 +291,6 @@ span.remove-btn-table:active {
     }
 
     li {
-        min-width: 300px;
         height: 10px;
         margin-top: 0;
         margin-bottom: 10px;
@@ -306,18 +302,21 @@ span.remove-btn-table:active {
     }
 
     li span.remove-btn-list {
+        padding-top: 3px;
         height: 20px;
         font-size: 15px;
         font-weight: bold;
     }
 
     li span.buy-btn {
+        padding-top: 3px;
         height: 20px;
         font-size: 15px;
         font-weight: bold;
     }
 
     li span.product-name {
+        padding-top: 3px;
         height: 20px;
         font-size: 15px;
         font-weight: bold;
@@ -327,12 +326,131 @@ span.remove-btn-table:active {
     /* bought items (table) area*/
     div.table-container {
         justify-content: center;
-        max-height: 300px;
+    }
+
+    h2#right-header {
+        align-self: center;
     }
 
     table {
-        min-width: 300px;
         font-size: 14px;
+    }
+
+    th {
+        top: -3px;
+    }
+
+    span.remove-btn-table {
+        width: 17px;
+        height: 17px;
+        font-size: 13px;
+    }
+}
+
+/* for screen between 300 and 372 px*/
+@media screen and (min-width: 300px) and (max-width: 372px) {
+
+    /* grid containers area*/
+    #container {
+        grid-template-columns: 100%;
+        grid-auto-rows: minmax(500px, auto);
+    }
+
+    #left-container {
+        grid-template-rows: 10% 30% 60%;
+        grid-template-areas:
+        "title"
+        "form"
+        "list";
+    }
+
+    /* headers/notification message */
+    h2#left-header {
+        align-self: center;
+        grid-area: title;
+    }
+
+    /*form area*/
+    form {
+        align-items: flex-start;
+        grid-area: form;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 175px;
+    }
+
+    #add-product-btn {
+        align-self: flex-start;
+    }
+
+    label {
+        display: none;
+    }
+
+
+    /* list area*/
+    div#list-container {
+        min-width: 300px;
+        border-bottom: solid 10px cornflowerblue;
+        border-top: solid 7px cornflowerblue;
+    }
+
+    ul#products-list {
+        background-color: inherit;
+        align-self: flex-start;
+        border-radius: 20px;
+        min-width: 250px;
+        grid-area: list;
+    }
+
+    li {
+        height: 20px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    li span.product-price {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    li span.remove-btn-list {
+        padding-top: 5px;
+        height: 22px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    li span.buy-btn {
+        padding-top: 5px;
+        height: 22px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    li span.product-name {
+        padding-top: 5px;
+        margin-bottom: 3px;
+        height: 20px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+
+    /* bought items (table) area*/
+    div.table-container {
+        justify-content: center;
+    }
+
+    h2#right-header {
+        align-self: center;
+    }
+
+    table {
+        font-size: 14px;
+        min-width: 100px;
     }
 
     th {
