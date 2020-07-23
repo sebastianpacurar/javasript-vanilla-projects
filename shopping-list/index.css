@@ -4,7 +4,7 @@ body {
 }
 
 
-/* grid containers*/
+/* grid containers area */
 #container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -25,7 +25,7 @@ body {
 }
 
 
-/* headers */
+/* headers/notification message */
 h2 {
     text-align: center;
 }
@@ -45,14 +45,12 @@ div#list-container {
     min-width: 445px;
     border-radius: 20px;
     background-color: cornflowerblue;
-    border: none 1px cornflowerblue;
     height: 290px;
     overflow-y: auto;
 }
 
 ul#products-list {
     align-self: flex-start;
-    border: none 2px cornflowerblue;
     border-radius: 20px;
     padding: 10px 10px 10px 10px;
     width: auto;
@@ -82,7 +80,6 @@ li span.product-price {
 }
 
 span {
-    border: none;
     font-size: 20px;
     text-align: center;
 }
@@ -158,7 +155,7 @@ input {
 }
 
 
-/* bought items (table)*/
+/* bought items (table) area*/
 div.table-container {
     display: flex;
     flex-direction: row;
@@ -193,6 +190,10 @@ td {
     user-select: text;
 }
 
+tr {
+    border: 1px solid #8a2be2;
+}
+
 tr:nth-child(even) {
     background-color: #e8e8e8;
 }
@@ -205,8 +206,11 @@ tr:hover {
     background-color: lightblue;
 }
 
-tfoot tr td {
-    background-color: lightcoral;
+tfoot td {
+    background-color: lightsalmon;
+    font-weight: bold;
+    position: sticky;
+    bottom: 0;
 }
 
 span.remove-btn-table {
@@ -231,76 +235,66 @@ span.remove-btn-table:active {
 /* responsive design section*/
 /* for screen between 0 and 500 px*/
 @media screen and (min-width: 0px) and (max-width: 500px) {
+
+    /* grid containers area*/
     #container {
-        display: grid;
         grid-template-columns: 100%;
         grid-auto-rows: minmax(500px, auto);
     }
 
     #left-container {
-        background-color: darkorange;
         grid-template-rows: 10% 30% 60%;
-        display: grid;
-        justify-items: center;
         grid-template-areas:
         "title"
         "form"
         "list";
     }
 
-    #right-container {
-        background-color: cyan;
-        display: grid;
-        grid-template-rows: 10% 90%;
-    }
-
+    /* headers/notification message */
     h2#left-header {
         align-self: center;
         grid-area: title;
     }
 
+    /*form area*/
     form {
-        display: grid;
-        grid-template-rows: 33% 33% 33%;
-        align-items: flex-end;
+        align-items: flex-start;
         grid-area: form;
-    }
-
-    label {
-        display: none;
     }
 
     input[type="text"], input[type="number"] {
         width: 175px;
-        align-self: flex-start;
     }
 
     #add-product-btn {
         align-self: flex-start;
     }
 
+    label {
+        display: none;
+    }
+
+
+    /* list area*/
     div#list-container {
         width: 100%;
         min-width: 300px;
-        border-radius: 20px;
-        background-color: cornflowerblue;
-        border: none 1px cornflowerblue;
-        height: 300px;
-        max-height: 290px;
-        overflow-y: auto;
+        border-bottom: solid 10px cornflowerblue;
+        border-top: solid 7px cornflowerblue;
+        height: 280px;
+        max-height: 280px;
     }
 
     ul#products-list {
         background-color: inherit;
         align-self: flex-start;
         border-radius: 20px;
-        min-width: 300px;
-        position: relative;
+        min-width: 350px;
         grid-area: list;
     }
 
     li {
-        min-width: 350px;
+        min-width: 300px;
         height: 10px;
         margin-top: 0;
         margin-bottom: 10px;
@@ -327,5 +321,27 @@ span.remove-btn-table:active {
         height: 20px;
         font-size: 15px;
         font-weight: bold;
+    }
+
+
+    /* bought items (table) area*/
+    div.table-container {
+        justify-content: center;
+        max-height: 300px;
+    }
+
+    table {
+        min-width: 300px;
+        font-size: 14px;
+    }
+
+    th {
+        top: -3px;
+    }
+
+    span.remove-btn-table {
+        width: 17px;
+        height: 17px;
+        font-size: 13px;
     }
 }
