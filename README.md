@@ -12,5 +12,11 @@
 
 <br />
 
+
+#### How to run:
+* Simply open the index.html file of any project, using your browser
+
+<br />
+
 # Creator
 * [Sebastian Pacurar](https://github.com/sebastianpacurar)
