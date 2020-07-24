@@ -11,25 +11,34 @@
 <body>
 
 
-<h1> Cards generator</h1>
+<h1> Playing Cards Generator</h1>
 
-<label for="deck-no">Number of decks: </label>
-<input type="text" id="deck-no"><br>
-<button id="generate-cards">Generate deck</button>
+<div id="inputs-container">
 
-<div class="deck-details">
-    <p>Deck ID: <span id="deck-id"></span></p>
-    <p>Remaining cards: <span id="remaining-cards"></span></p>
+    <div id="generate-container">
+        <label for="deck-no">Number of decks: </label>
+        <input type="number" id="deck-no">
+        <button id="generate-deck">Generate deck</button>
+    </div>
+
+    <div id="draw-container">
+        <label for="draw">Number of cards to draw: </label>
+        <input type="number" id="draw"><br>
+        <div id="button-area">
+            <button id="draw-cards">Draw</button>
+            <button id="reshuffle">Reshuffle</button>
+        </div>
+    </div>
 </div>
 
-<hr>
+<div id="cards-container">
 
-<label for="draw">Number of cards to draw: </label>
-<input type="text" id="draw"><br>
-<button id="draw-cards">Draw cards</button>
-<button id="reshuffle"> Reshuffle / Reset cards</button>
+    <h3>Remaining cards: </h3>
+    <div id="cards-table">
+        <div class="card-details"></div>
+    </div>
 
-<div id="drawn-cards"></div>
+</div>
 
 <script src="script.js"></script>
 </body>

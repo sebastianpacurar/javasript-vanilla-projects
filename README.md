@@ -6,7 +6,11 @@
 
 #### Projects Links:
 * [shopping-list](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/shopping-list)
-* [black-jack](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/black-jack)
 * [playing-cards-generator](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/playing-cards-generator)
+* [black-jack](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/black-jack)
 * [word-color-game](https://github.com/sebastianpacurar/javasript-vanilla-projects/tree/master/word-color-game)
 
+<br />
+
+# Creator
+* [Sebastian Pacurar](https://github.com/sebastianpacurar)
