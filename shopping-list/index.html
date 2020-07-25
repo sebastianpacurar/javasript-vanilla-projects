@@ -33,12 +33,14 @@
         <form id="add-item" class="form-container">
             <div>
                 <label for="addInput">Insert Name of Product: </label>
-                <input type="text" minlength="3" maxlength="15" placeholder="product name" id="addInput" onkeypress="if(this.value.length >= this.getAttribute('maxlength')) return false;">
+                <input type="text" minlength="3" maxlength="15" placeholder="product name" id="addInput" required
+                       onkeypress="if(this.value.length >= this.getAttribute('maxlength')) return false;">
             </div>
 
             <div>
                 <label for="addPrice">Insert Price of Product: </label>
-                <input type="number" step="any" maxlength="10" placeholder="product price" id="addPrice" onkeypress="if(this.value.length >= this.getAttribute('maxlength')) return false;">
+                <input type="number" step="any" maxlength="10" placeholder="product price" id="addPrice"
+                       onkeypress="if(this.value.length >= this.getAttribute('maxlength')) return false;">
             </div>
 
             <button id="add-product-btn">Add product</button>

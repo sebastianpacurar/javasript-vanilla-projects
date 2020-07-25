@@ -152,6 +152,11 @@ input {
     background-color: darkgoldenrod;
 }
 
+.outline {
+    outline-color: lightseagreen;
+    background-color: lightblue;
+}
+
 
 /* bought items (table) area*/
 div.table-container {

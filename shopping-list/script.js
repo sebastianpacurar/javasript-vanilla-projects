@@ -4,6 +4,7 @@ const list = document.getElementById('products-list'),
     listItems = document.getElementsByTagName('li'),
     emptyListNotification = document.getElementById('is-list-empty'),
     form = document.forms['add-item'],
+    inputs = document.querySelectorAll('input'),
     table = document.querySelector('table'),
     tbody = document.querySelector('tbody'),
     tfoot = document.querySelector('tfoot'),
@@ -151,7 +152,7 @@ form.addEventListener('submit', (e) => {
     const productInput = form.querySelector('#addInput').value.trim(),
         priceInput = form.querySelector('#addPrice').value.trim();
 
-    if (parseFloat(priceInput) > 0) {
+    if (parseFloat(priceInput) > 0 || priceInput.length === 0) {
 
         const listItem = document.createElement('LI');
 
@@ -180,7 +181,7 @@ form.addEventListener('submit', (e) => {
 
         form.querySelector('#addInput').value = '';
         form.querySelector('#addPrice').value = '';
-    } else if (parseFloat(priceInput) < 0){
+    } else if (parseFloat(priceInput) < 0) {
         alert('Price cannot be a negative value');
         form.querySelector('#addPrice').value = '';
     }
@@ -201,4 +202,18 @@ tbody.addEventListener('click', e => {
             table.style.visibility = 'hidden';
         }
     }
+});
+
+
+inputs.forEach(item => {
+    item.addEventListener('focusin', (e) => {
+        e.target.classList.toggle('outline');
+    })
+});
+
+
+inputs.forEach(item => {
+    item.addEventListener('focusout', (e) => {
+        e.target.classList.toggle('outline');
+    })
 });
