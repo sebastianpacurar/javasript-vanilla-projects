@@ -3,8 +3,8 @@
 const inputsContainer = document.getElementById('inputs-container'),
     cardsTable = document.getElementById('cards-table'),
     cardsLeftMessage = document.getElementById('remaining-cards'),
-    drawBtn = document.getElementById('draw-cards'),
-    drawContainerBtns = document.querySelectorAll('#button-area button');
+    drawContainerBtns = document.querySelectorAll('#button-area button'),
+    inputs = document.querySelectorAll('input[type="number"]');
 let deckNumber = '';
 
 
@@ -107,4 +107,18 @@ inputsContainer.addEventListener('click', e => {
         cardsLeftMessage.style.visibility = 'visible';
         cardsLeftMessage.textContent = `Error: ${err}`;
     });
+});
+
+
+inputs.forEach(item => {
+    item.addEventListener('focusin', (e) => {
+        e.target.classList.toggle('outline');
+    })
+});
+
+
+inputs.forEach(item => {
+    item.addEventListener('focusout', (e) => {
+        e.target.classList.toggle('outline');
+    })
 });
