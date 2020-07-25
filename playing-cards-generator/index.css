@@ -14,7 +14,6 @@ h2 {
 }
 
 
-
 /* inputs container area */
 #inputs-container {
     padding: 10px 0;
@@ -22,6 +21,11 @@ h2 {
     margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
+}
+
+.outline {
+    outline-color: lightseagreen;
+    background-color: lightblue;
 }
 
 #generate-container {
@@ -37,6 +41,15 @@ button {
     outline: none;
     border-radius: 5px;
     background-color: lightseagreen;
+}
+
+button:hover {
+    background-color: cornflowerblue;
+}
+
+button:active {
+    background-color: blueviolet;
+    color: white;
 }
 
 button:disabled {
