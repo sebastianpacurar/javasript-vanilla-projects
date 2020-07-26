@@ -14,7 +14,7 @@
 
 
 #### How to run:
-* Simply open the index.html file of any project, using your browser
+* Simply open the index.html file of any project in your browser
 
 <br />
 

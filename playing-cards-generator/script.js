@@ -31,9 +31,9 @@ inputsContainer.addEventListener('click', e => {
           Number converts an empty string to 0, while parseInt('') returns NaN
      */
     const deckCount = parseInt(document.getElementById('deck-no').value) > 0 ?
-        document.getElementById('deck-no').value : 1;
+        parseInt(document.getElementById('deck-no').value) : 1;
     const drawCount = parseInt(document.getElementById('draw').value) > 0 ?
-        document.getElementById('draw').value : 1
+        parseInt(document.getElementById('draw').value) : 1
     let url = '';
 
     // if deck input is empty string, then default to 1 deck of card
@@ -78,7 +78,7 @@ inputsContainer.addEventListener('click', e => {
 
             // remove all the cards when url includes shuffle, or when generate deck button is clicked again
             while (cardsTable.children.length > 0) {
-                cardsTable.removeChild(cardsTable.firstChild);
+                cardsTable.removeChild(cardsTable.firstElementChild);
             }
         }
         const numberOfDecks = getDecksNumber(data.remaining);

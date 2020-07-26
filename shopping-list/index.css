@@ -8,7 +8,7 @@ body {
 #container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(100vh, auto);
+    grid-auto-rows: minmax(100vh, 100vh);
 }
 
 #left-container {
@@ -21,7 +21,7 @@ body {
 #right-container {
     background-color: cyan;
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 10% 60% 30%;
 }
 
 
@@ -46,17 +46,15 @@ div#list-container {
     border-radius: 20px;
     background-color: cornflowerblue;
     height: 90%;
-    overflow-y: auto;
 }
 
 ul#products-list {
     border-radius: 20px;
     padding: 10px 10px 10px 10px;
     width: auto;
-    height: auto;
+    height: 88%;
     min-width: 390px;
     position: relative;
-    max-height: 250px;
     visibility: visible;
     overflow: auto;
 }
@@ -134,13 +132,18 @@ input {
     outline: none;
 }
 
-#add-product-btn {
-    font-size: 15px;
-    height: 30px;
-    background-color: turquoise;
+button {
     border-radius: 5px;
     border: none;
     outline: none;
+    font-size: 15px;
+    padding-top: 5px;
+}
+
+#add-product-btn {
+    background-color: turquoise;
+    font-size: 15px;
+    height: 30px;
     align-self: center;
 }
 
@@ -162,7 +165,7 @@ input {
 div.table-container {
     display: flex;
     justify-content: center;
-    height: 80%;
+    height: 95%;
     overflow-y: auto;
 }
 
@@ -232,6 +235,25 @@ span.remove-btn-table:active {
     color: white;
 }
 
+div#clear-all {
+    display: flex;
+    justify-content: center;
+}
+
+#clear-all-btn {
+    background-color: darkorange;
+    width: 150px;
+    height: 30px;
+}
+
+#clear-all-btn:hover {
+    background-color: darkgoldenrod;
+}
+
+#clear-all-btn:active {
+    background-color: darkcyan;
+}
+
 
 /* responsive design section*/
 /* for screen between 372 and 845 px*/
@@ -240,7 +262,7 @@ span.remove-btn-table:active {
     /* grid containers area*/
     #container {
         grid-template-columns: 100%;
-        grid-auto-rows: minmax(500px, auto);
+        grid-auto-rows: minmax(500px, 100vh);
     }
 
     #left-container {
@@ -355,7 +377,7 @@ span.remove-btn-table:active {
     /* grid containers area*/
     #container {
         grid-template-columns: 100%;
-        grid-auto-rows: minmax(500px, auto);
+        grid-auto-rows: minmax(500px, 100vh);
     }
 
     #left-container {
@@ -393,6 +415,7 @@ span.remove-btn-table:active {
 
     /* list area*/
     div#list-container {
+        width: 100%;
         min-width: 300px;
         border-bottom: solid 10px cornflowerblue;
         border-top: solid 7px cornflowerblue;
@@ -410,7 +433,6 @@ span.remove-btn-table:active {
         height: 20px;
         margin-top: 0;
         margin-bottom: 10px;
-        margin-right: 10px;
     }
 
     li span.product-price {
