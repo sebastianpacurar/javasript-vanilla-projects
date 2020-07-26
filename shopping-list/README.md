@@ -4,7 +4,8 @@
 * add an item to shopping list
 * remove an item from shopping list
 * buy an item (move to bought items)
-* remove item from bought items
+* remove each item from bought items
+* remove all items at once from bought items
 
 <br />
 

@@ -10,7 +10,8 @@ const list = document.getElementById('products-list'),
     tfoot = document.querySelector('tfoot'),
     tableProductCells = document.getElementsByClassName('product-cell'),
     tableQuantityCells = document.getElementsByClassName('quantity-cell'),
-    tablePriceCells = document.getElementsByClassName('price-cell');
+    tablePriceCells = document.getElementsByClassName('price-cell'),
+    rightContainer = document.getElementById('right-container');
 
 
 const isListEmpty = () => {
@@ -189,22 +190,6 @@ form.addEventListener('submit', (e) => {
 });
 
 
-// whenever the x span is clicked on any of the row, remove that row from the table along with its entry in the boughtItems object literal
-tbody.addEventListener('click', e => {
-    if (e.target.className === 'remove-btn-table') {
-        const tableRow = e.target.parentNode.parentNode;
-        tbody.removeChild(tableRow);
-
-        calculateTotal();
-
-        // if there are no products in table, hide the table
-        if (tableProductCells.length === 0) {
-            table.style.visibility = 'hidden';
-        }
-    }
-});
-
-
 inputs.forEach(item => {
     item.addEventListener('focusin', (e) => {
         e.target.classList.toggle('outline');
@@ -216,4 +201,25 @@ inputs.forEach(item => {
     item.addEventListener('focusout', (e) => {
         e.target.classList.toggle('outline');
     })
+});
+
+
+// whenever the x span is clicked on any of the row, remove that row from the table along with its entry in the boughtItems object literal
+rightContainer.addEventListener('click', e => {
+    if (e.target.className === 'remove-btn-table') {
+        const tableRow = e.target.parentNode.parentNode;
+        tbody.removeChild(tableRow);
+
+        calculateTotal();
+
+    } else if (e.target.id === 'clear-all-btn') {
+        while (tbody.children.length > 0) {
+            tbody.removeChild(tbody.firstElementChild);
+        }
+    }
+
+    // if there are no products in table, hide the table
+    if (tableProductCells.length === 0) {
+        table.style.visibility = 'hidden';
+    }
 });
